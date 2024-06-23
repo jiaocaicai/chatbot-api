@@ -66,4 +66,22 @@ public class ApiTest {
             System.out.println(response.getStatusLine().getStatusCode());
         }
     }
+
+    @Test
+    public void my_query_unanswered_questions() throws IOException {
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+
+        HttpGet get = new HttpGet("https://www.yuque.com/api/comments");
+
+        get.addHeader("cookie", "aliyungf_tc=b98beaa144b35f854a65a6ac373d602c35efe516d8cbcb871b55d67f3ede5770; acw_tc=ac11000117187074841856476edf77b0e1c80da693270a7d989040b79add8c; yuque_ctoken=bPqLuOXbqssxpJMQuPGqnoj2; receive-cookie-deprecation=1; lang=zh-cn; _yuque_session=Yxvt7FKhpiAjwHBHiuoSDE4TbknaC05mELFr0FOqVeFAAJtH2lF7SXyzRb_xrgO5xcO-a3UvIkPexze73PHbiw==; tfstk=fturaLcMDULyGmi33-aUQX2Xl3U8JPpsx2wQtXc3N82lPa6n0bGaNgO-tJkEh-3SdQhB-wDrUQeSZJx3xxhnLkd8dJ2EdXmWGFTswbUL-9J65FMMi0dqU_2hqBq065ppgg3IwbUdMR0kDfGRYXMZVBznKrq0T5U3ZajkgEVanaVhrWXDgWe0Kyqlqr4095FlxW4nMOk-pONgqCmCcSFNwlqzIj-O-w-8wOwsZ_QC-qo74RXU3wbnu7lxzOn57HwiX8Z_LxYfzyl0Txrs4d7rLXctxouFEQMinDk3MmpFYRonNcn30QYogzyrQqEwRLUrxY3U205p6j4oHceTqnpYg4g_YREVnLcjg8qZYY9A-8iZixrslt__ScHq8l4G4fBLiuDsJ0WhYuVYgRO2i6kGYfRXlsOCvME0jSy6wkjdvuVYgRO2gMIL2NV4CQEh.; current_theme=default");
+        get.addHeader("Content-Type", "application/json;charset=utf8");
+
+        CloseableHttpResponse response = httpClient.execute(get);
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            String res = EntityUtils.toString(response.getEntity());
+            System.out.println(res);
+        } else {
+            System.out.println(response.getStatusLine().getStatusCode());
+        }
+    }
 }
